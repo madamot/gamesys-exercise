@@ -3,7 +3,8 @@ import React,{ useState, useEffect } from 'react';
 
 
 const Time = styled.ul`
-
+  padding: 0;
+  margin: 0;
   display: inline;
 
 `;
@@ -24,19 +25,22 @@ const Container = styled.div`
 
 const Unit = styled.div`
   padding: 1em;
+
+  @media (max-width: 440px) {
+    padding: .2em;
+  }
 `;
 
 const Colon = styled.div`
-  padding: .5em;
   margin-bottom: 1em;
 `;
 
-const Timer = (date) => {
+const Timer = ({date, timerFinished}) => {
 
 
   const calculateTimeLeft = () => {
 
-    let difference = +new Date(date.date) - +new Date();
+    let difference = +new Date(date) - +new Date();
 
     let timeLeft = {};
 
@@ -47,6 +51,8 @@ const Timer = (date) => {
        minutes: Math.floor((difference / 1000 / 60) % 60),
        seconds: Math.floor((difference / 1000) % 60)
      };
+   } else {
+     timerFinished(true);
    }
 
    return timeLeft;
@@ -60,6 +66,7 @@ const Timer = (date) => {
       }, 1000);
 
     }, [timeLeft]);
+
 
 
     const timerComponents = [];
@@ -103,7 +110,7 @@ const Timer = (date) => {
 
   return (
     <Time>
-      {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+      {timerComponents.length ? timerComponents : <h1>00 : 00 : 00</h1>}
     </Time>
   );
 };

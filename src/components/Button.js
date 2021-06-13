@@ -5,7 +5,8 @@ import React from 'react';
 const Clicker = styled.button`
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
-  width: 20em;
+  width: 60vw;
+  max-width: 30em;
   border: 0;
   border-radius: .2em;
   cursor: pointer;

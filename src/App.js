@@ -69,6 +69,8 @@ const Header = styled.div`
 function App() {
   const [data, setData] = useState([]);
 
+  const [timerState, setTimerState] = useState(false);
+
   useEffect(() => {
       getData()
   }, []);
@@ -91,7 +93,9 @@ function App() {
       });
   }
 
-
+  function timerFinished(value) {
+    setTimerState(value)
+  }
 
 
 
@@ -101,13 +105,21 @@ function App() {
       {data.offer ?
         <Container background={data.offer.background}>
           <Header className="App-header">
-            <div>
-              <Banner banner={data.offer.header} alt="" />
-              <h3>{data.offer.title}</h3>
-              <div>
-                <Timer date={data.offer.date} />
-              </div>
-              <Button primary size={data.offer.button.size} label={data.offer.button.label} onClick={() => window.open(`${data.offer.button.url}`, '_blank')}/>
+            <div style={{width:'80%'}}>
+              {timerState ? (
+                <div>
+                  <Timer date={data.offer.date} timerFinished={timerFinished} />
+                </div>
+              ) : (
+                <>
+                  <Banner banner={data.offer.header} alt="" />
+                  <h3>{data.offer.title}</h3>
+                  <div>
+                    <Timer date={data.offer.date} timerFinished={timerFinished} />
+                  </div>
+                  <Button primary size={data.offer.button.size} label={data.offer.button.label} onClick={() => window.open(`${data.offer.button.url}`, '_blank')}/>
+                </>
+              )}
             </div>
           </Header>
         </Container>
