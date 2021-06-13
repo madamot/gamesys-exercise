@@ -2,11 +2,17 @@ import React,{ useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
 import Button from './components/Button'
+import Timer from './components/Timer'
 
 const Container = styled.div`
   text-align: center;
-  background-image: url(${props => props.background});
-  object-fit: cover;
+  background-image: url(${props => props.background.backgroundOneX});
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -14,15 +20,59 @@ const Container = styled.div`
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   min--moz-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) {
+
+    background-image: url(${props => props.background.backgroundTwoX});
+
+  }
+`;
+
+const Banner = styled.div`
+  display: flex;
+  background-image: url(${props => props.banner.headerOneX});
+  background-repeat:no-repeat;
+  background-size:contain;
+  background-position:center;
+  ${'' /* background-size: cover; */}
+  min-width: 100%;
+  height: 10em;
+
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   min--moz-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) {
+
+    background-image: url(${props => props.banner.headerTwoX});
+
+  }
 `;
 
 const Header = styled.div`
   text-align: center;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 
 function App() {
   const [data, setData] = useState([]);
+
+  useEffect(() => {
+      getData()
+  }, []);
+
 
   const getData = () => {
     fetch('data.json', {
@@ -41,19 +91,22 @@ function App() {
       });
   }
 
-  useEffect(() => {
-    getData()
-  }, [])
+
+
+
 
 
   return (
     <div>
       {data.offer ?
-        <Container background={data.offer.backgroundTwoX}>
+        <Container background={data.offer.background}>
           <Header className="App-header">
             <div>
-              <img src={data.offer.headerOneX} alt="" />
+              <Banner banner={data.offer.header} alt="" />
               <h3>{data.offer.title}</h3>
+              <div>
+                <Timer date={data.offer.date} />
+              </div>
               <Button primary size={data.offer.button.size} label={data.offer.button.label} onClick={() => window.open(`${data.offer.button.url}`, '_blank')}/>
             </div>
           </Header>

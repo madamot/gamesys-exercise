@@ -1,10 +1,15 @@
 {
   "offer": {
-    "title": "Get your free £100 now",
-    "backgroundOneX": "/background_scale_1x.jpeg",
-    "backgroundTwoX": "/background_scale_2x.jpeg",
-    "headerOneX": "/top_image_scale_1x.png",
-    "headerTwoX": "/top_image_scale_2x.png",
+    "title": "Get your free £10 now",
+    "background": {
+      "backgroundOneX": "/background_scale_1x.jpeg",
+      "backgroundTwoX": "/background_scale_2x.jpeg"
+    },
+    "header": {
+      "headerOneX": "/top_image_scale_1x.png",
+      "headerTwoX": "/top_image_scale_2x.png"
+    },
+    "date": "06/14/2021",
     "button": {
       "label": "Opt in",
       "size": "large",
