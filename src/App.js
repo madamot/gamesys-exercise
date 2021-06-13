@@ -113,7 +113,7 @@ function App() {
               ) : (
                 <>
                   <Banner banner={data.offer.header} alt="" />
-                  <h3>{data.offer.title}</h3>
+                  <h3 data-testid="resolved">{data.offer.title}</h3>
                   <div>
                     <Timer date={data.offer.date} timerFinished={timerFinished} />
                   </div>
@@ -123,7 +123,7 @@ function App() {
             </div>
           </Header>
         </Container>
-      : <p>Loading...</p>
+      : <p data-testid="loading">Loading...</p>
       }
 
     </div>
