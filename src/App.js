@@ -54,7 +54,7 @@ function App() {
             <div>
               <img src={data.offer.headerOneX} alt="" />
               <h3>{data.offer.title}</h3>
-              <Button primary size="large" label={data.offer.button} />
+              <Button primary size={data.offer.button.size} label={data.offer.button.label} onClick={() => window.open(`${data.offer.button.url}`, '_blank')}/>
             </div>
           </Header>
         </Container>
