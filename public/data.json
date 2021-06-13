@@ -1,0 +1,10 @@
+{
+  "offer": {
+    "title": "Get your free £100 now",
+    "button": "Opt in",
+    "backgroundOneX": "/background_scale_1x.jpeg",
+    "backgroundTwoX": "/background_scale_2x.jpeg",
+    "headerOneX": "/top_image_scale_1x.png",
+    "headerTwoX": "/top_image_scale_2x.png"
+  }
+}
