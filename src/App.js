@@ -1,5 +1,25 @@
 import React,{ useState, useEffect } from 'react';
-import './App.css';
+import styled, { css } from 'styled-components';
+
+import Button from './components/Button'
+
+const Container = styled.div`
+  text-align: center;
+  background-image: url(${props => props.background});
+  object-fit: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+`;
+
+const Header = styled.div`
+  text-align: center;
+`;
+
 
 function App() {
   const [data, setData] = useState([]);
@@ -27,22 +47,22 @@ function App() {
 
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {data.offer ?
-          <div>
-            <img src={data.offer.headerOneX} alt="" />
-            <h3>{data.offer.title}</h3>
-          </div>
-            : <p>Loading...</p>
-        }
-      </header>
+    <div>
+      {data.offer ?
+        <Container background={data.offer.backgroundTwoX}>
+          <Header className="App-header">
+            <div>
+              <img src={data.offer.headerOneX} alt="" />
+              <h3>{data.offer.title}</h3>
+              <Button primary size="large" label={data.offer.button} />
+            </div>
+          </Header>
+        </Container>
+      : <p>Loading...</p>
+      }
 
-      <div className="App">
-
-
-      </div>
     </div>
+
   );
 }
 
