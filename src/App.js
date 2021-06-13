@@ -6,8 +6,8 @@ import Timer from './components/Timer'
 
 const Container = styled.div`
   text-align: center;
-  background-image: url(${props => props.background});
-  background-position: center;
+  background-image: url(${props => props.background.backgroundOneX});
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
@@ -20,10 +20,49 @@ const Container = styled.div`
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   min--moz-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) {
+
+    background-image: url(${props => props.background.backgroundTwoX});
+
+  }
+`;
+
+const Banner = styled.div`
+  display: flex;
+  background-image: url(${props => props.banner.headerOneX});
+  background-repeat:no-repeat;
+  background-size:contain;
+  background-position:center;
+  ${'' /* background-size: cover; */}
+  min-width: 100%;
+  height: 10em;
+
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   min--moz-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) {
+
+    background-image: url(${props => props.banner.headerTwoX});
+
+  }
 `;
 
 const Header = styled.div`
   text-align: center;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 
@@ -60,10 +99,10 @@ function App() {
   return (
     <div>
       {data.offer ?
-        <Container background={data.offer.backgroundTwoX}>
+        <Container background={data.offer.background}>
           <Header className="App-header">
             <div>
-              <img src={data.offer.headerOneX} alt="" />
+              <Banner banner={data.offer.header} alt="" />
               <h3>{data.offer.title}</h3>
               <div>
                 <Timer date={data.offer.date} />
